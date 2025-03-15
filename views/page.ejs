@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="heading">
+        <h1>All about plants!</h1>
+    </div>
+    <div class = "container">
+        <% if(locals.data) { %>
+            <div class="image-container">
+                <img
+                    <% if(data.default_image != null && 'medium_url' in data.default_image) { %> 
+                        src = <%= data.default_image.medium_url %> 
+                    <% } else { %>
+                        src = "/images/noimage.jpg"
+                    <% } %>
+                >
+            </div>
+            <div>
+                <p>
+                    scientific name is <%= data.scientific_name[0] %> but commonly known as <%= data.common_name %>
+                </p>
+            </div>
+        <% } else { %>
+            <div class="image-container">
+                <img src="/images/plant1.jpg">
+            </div>
+            <div>
+                <p>
+                    This is commonly known and spider plant!
+                </p>
+            </div>            
+        <% } %>
+        <div class="buttons">
+            <form action="/viewpage" method="post">
+                <button type="submit" name="type" value="random">Search Random Plant!</button>
+            </form>
+            <!-- <form action="/viewpage" method="post">
+                <button type="submit" name="type" value="indian">Indian plant!</button>
+            </form> -->
+        </div> 
+    </div>
+</body>
+</html>
